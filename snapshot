@@ -1,0 +1,48 @@
+#!/usr/bin/pwsh
+. "connected.ps1" $args[$args.count-1]
+$item = $args[0]
+$VM = $args[1]
+switch($item)
+{
+	List
+	{
+		if($args.count -eq 3)
+		{
+		  Get-VM -Name $VM | Get-Snapshot  | Format-Table -property Name,Description,Created,VM,PowerState
+		}
+
+                if($args.count -eq 4)
+                {
+		  Get-VM -Name $VM | Get-Snapshot -Name $args[2] | Format-Table -property Name,Description,Created,VM,PowerState
+                }
+	}
+	New
+	{
+		if($args.count -eq 4)
+		{
+		  New-Snapshot -VM $VM -Name $args[2] | Format-Table -property Name,Description,Created,VM,PowerState
+		}
+
+                if($args.count -eq 5)
+                {
+                  New-Snapshot -VM $VM -Name $args[2] -Description $args[3] -Confirm:$false | Format-Table -property Name,Description,Created,VM,PowerState
+
+                }
+
+	}
+	Rever
+	{
+	  $vmp = Get-VM -Name $VM
+	  if ($vmp.PowerState -ne 'PoweredOff') { $vmp | Stop-VM -Confirm:$false | Out-Null }
+
+	  $snapshot = Get-Snapshot -VM $vmp -Name $args[2]
+	  Set-VM -VM $vmp -Snapshot $snapshot -Confirm:$false
+	  Start-VM $VM | Out-Null 
+	}
+	VM
+	{
+	  Write-Host "List of Vitual Machines"
+	  Get-VM |Format-Table -property Name,PowerState,MemoryMB,@{Name="DiskSpaceGB";Expression={($_.ProvisionedSpaceGB).ToString("0000.00")}},@{Name="UsedSpaceGB";Expression={($_.UsedSpaceGB).ToString("0000.00")}}   
+	}
+}
+
