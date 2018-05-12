@@ -11,16 +11,26 @@ Here are the scripts that I use every day to manage the virtual machines present
   - Create credential file
   - Automate connection by providing the server's IP address
 
-## 1. Install Powshell
+## 1. Install Powershell
 
   Follow this link : [Installing PowerShell Core on Linux](https://docs.microsoft.com/en-us/powershell/scripting/setup/installing-powershell-core-on-linux?view=powershell-6)
 
   Start Powershell
 
-      pwsh
+      # pwsh
 
-## 2. Add PowerCli Module on Powershell
+## 2. Add PowerCLI Module on Powershell
 
-      pwsh
-      Find-Module -Name VMWare.PowerCLI
-      Install-Module -Name VMWare.PowerCLI
+     # pwsh
+     PS /> Find-Module -Name VMWare.PowerCLI
+     PS /> Install-Module -Name VMWare.PowerCLI
+
+## 3. Try Connected To Hosts
+
+      PS /> Connect-VIServer -Server IP      
+
+   - For the firt connection on your host, it is possible to receive a message related to the certificate
+
+   You can deal certificat erreur by :
+
+      PS /> set-PowerCLIConfiguration -InvalidCertificationAction Ignore
