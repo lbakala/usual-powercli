@@ -11,30 +11,10 @@ Here are the scripts that I use every day to manage the virtual machines present
   - Create credential file
   - Automate connection by providing the server's IP address
 
-## 1. Install Powershell
+## 1. Install Powshell
 
-  Install system components
+  Follow this link : [Installing PowerShell Core on Linux] (https://docs.microsoft.com/en-us/powershell/scripting/setup/installing-powershell-core-on-linux?view=powershell-6)
 
-    sudo apt-get update
-    sudo apt-get install curl gnupg apt-transport-https
+  Start Powershell
 
-  Import the public repository GPG keys
-
-    curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
-
-  Register the Microsoft Product feed
-
-    sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-debian-stretch-prod stretch main" > /e$
-
-  Update the list of repository package
-
-    sudo apt-get update
-
-  Install PowerShell
-
-    sudo apt-get install -y powershell
-
-  Start PowerShell
-
-    pwsh
-
+      pwsh
