@@ -18,3 +18,8 @@ Here are the scripts that I use every day to manage the virtual machines present
   Start Powershell
 
       pwsh
+
+## 2. Add PowerCli Module on Powershell
+      pwsh
+      Find-Module -Name VMWare.PowerCLI
+      InstallModule -Name VMWare.PowerCLI
