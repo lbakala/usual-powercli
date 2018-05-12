@@ -70,7 +70,6 @@ Here are the scripts that I use every day to manage the virtual machines present
 
       # pwsh connected.ps1 192.168.xx.xx
 
-  List All Virtual Machines
       # cat > VM
       #!/usr/bin/pwsh
       . "/home/user/connected.ps1" $args[$args.count-1]
