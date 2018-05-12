@@ -1,0 +1,86 @@
+#!/usr/bin/pwsh
+. "connected.ps1" $args[$args.count-1]
+$item = $args[0]
+$vm = $args[1]
+switch($item)
+{
+	Start
+	{
+		if($vm.indexOf(",") -gt 0 )
+		{
+		  $svm=$vm.Split(",")
+
+		  for($i=0;$i -lt $svm.count;$i++)
+		  {
+		    Start-VM $svm[$i]
+		  }
+		}
+		else
+		{
+		Start-VM $vm
+		}
+	}
+#------------
+	Stop
+	{
+                if($vm.indexOf(",") -gt 0 )
+                {
+                  $svm=$vm.Split(",")
+
+                  for($i=0;$i -lt $svm.count;$i++)
+                  {
+                    Stop-VM $svm[$i] -Confirm:$false 
+                  }
+                }
+		else
+		{
+		Stop-VM $vm -Confirm:$false
+		}
+	}
+#------------
+	List
+	{
+		if($args.count -eq 2)
+		{
+		Get-VM | Format-Table -property Name,PowerState
+		}
+		else
+		{
+			if($vm.indexOf(",") -gt 0 )
+			{
+
+			   $svm = $vm.Split(",")
+			   for($i=0; $i -lt $svm.count; $i++)
+			   {
+				Get-VM -Name $svm[$i]
+			   } 
+			}
+			else
+			{
+			  Get-VM -Name $vm
+			}
+		}
+	}
+#------------
+ 	remove
+        {
+                if($vm.indexOf(",") -gt 0 )
+                {
+                  $svm=$vm.Split(",")
+
+                  for($i=0;$i -lt $svm.count;$i++)
+                  {
+                    $vmr = Get-VM -Name $svm[$i]
+
+                    if ($vmr.PowerState -ne 'PoweredOff') { $vmr | Stop-VM -Confirm:$false | Out-Null }
+
+                    Remove-VM $vmr -DeletePermanently -Confirm:$false
+                  }
+                }
+                else
+                {
+                  Remove-VM $vm -DeletePermanently -Confirm:$false
+                }
+        }
+#------------
+}
