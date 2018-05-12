@@ -11,6 +11,7 @@ Here are the scripts that I use every day to manage the virtual machines present
   - Create credential file
   - Automate connection by providing the server's IP address
 
+
 ## 1. Install Powershell
 
   Follow this link : [Installing PowerShell Core on Linux](https://docs.microsoft.com/en-us/powershell/scripting/setup/installing-powershell-core-on-linux?view=powershell-6)
@@ -66,3 +67,24 @@ Here are the scripts that I use every day to manage the virtual machines present
       $password = $pass | ConvertTo-SecureString -asPlainText -Force
       $credential = New-Object System.Management.Automation.PSCredential $username,$password
       $connected=Connect-VIServer -Server $server -credential $credential
+
+      # pwsh connected.ps1 192.168.xx.xx
+
+  - List All Virtual Machines
+      
+      # cat > VM
+      #!/usr/bin/pwsh
+      . "/home/user/connected.ps1" $args[$args.count-1]
+      $item = $args[0]
+      switch($tem)
+      {
+            List
+            {
+              Get-VM
+            }
+      }
+
+   - Call List action
+      # pwsh VM List 192.168.xx.xx
+
+
