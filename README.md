@@ -10,7 +10,7 @@ Here are the scripts that I use every day to manage the virtual machines present
   - Try Connected To Hosts
   - Create credential file
   - Automate connection by providing the server's IP address
-
+  - Command
 
 ## 1. Install Powershell
 
@@ -82,7 +82,13 @@ Here are the scripts that I use every day to manage the virtual machines present
             }
       }
 
-  Call List action
       # pwsh VM List 192.168.xx.xx
 
-
+## 5.Command
+  - pwsh VM List @IP(esxi)
+  - pwsh VM List @IP(esxi1);  pwsh VM List @IP(esxi2)
+  - pwsh VM List Debian9.zabbix-master  @IP(esxi)
+  - pwsh VM List Centos7.Ansible-controller,Debian9.zabbix-master,Debian9.Ansible-databases @IP(esxi)
+  - pwsh VM Start Debian9.zabbix-master @IP(esxi)
+  - pwsh VM Start Centos7.Ansible-controller,Debian9.zabbix-master,Debian9.Ansible-databases @IP(esxi)
+  - pwsh VM remove Debian9.zabbix-master @IP(esxi)  
