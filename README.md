@@ -36,7 +36,7 @@ Here are the scripts that I use every day to manage the virtual machines present
 
       PS /> set-PowerCLIConfiguration -InvalidCertificationAction Ignore
 
-## 3. Create Credential File
+## 4. Create Credential File
 
       # mkdir /root/.vmware
       # touch /root/.vmware/secret.xml
@@ -56,7 +56,7 @@ Here are the scripts that I use every day to manage the virtual machines present
       </server>
       </data>
 
-## 4. Automate connection by providing the server's IP address
+## 5. Automate connection by providing the server's IP address
 
       # cat > connected.ps1
       $server = $args[$args.count-1]
