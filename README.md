@@ -29,8 +29,29 @@ Here are the scripts that I use every day to manage the virtual machines present
 
       PS /> Connect-VIServer -Server IP      
 
-   - For the firt connection on your host, it is possible to receive a message related to the certificate
+   - For the first connection on your host, it is possible to receive a message related to the certificate
 
    You can deal certificat erreur by :
 
       PS /> set-PowerCLIConfiguration -InvalidCertificationAction Ignore
+
+## 3. Create Credential File
+
+      # mkdir /root/.vmware
+      # touch /root/.vmware/secret.xml
+      # chmod 000 /root/.vmware/secret.xml
+      # cat > secret.xml
+      <?xml version="1.0" encoding="iso-8859-1"?>
+      <data>
+      <server>
+      <ip>192.168.xx.xx</ip>
+      <user>username</user>
+      <pwd>******</pwd>
+      </server>
+      <server>
+      <ip>192.168.xx.xx</ip>
+      <user>username</user>
+      <pwd>******</pwd>
+      </server>
+      </data>
+
