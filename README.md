@@ -34,7 +34,7 @@ Here are the scripts that I use every day to manage the virtual machines present
 
    You can deal certificat erreur by :
 
-      PS /> set-PowerCLIConfiguration -InvalidCertificationAction Ignore
+      PS /> set-PowerCLIConfiguration -InvalidCertificateAction Ignore
 
 ## 4. Create Credential File
 
